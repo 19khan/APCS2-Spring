@@ -7,7 +7,8 @@ abstract public class Ticket {
 	
 	abstract public double getPrice();
 	
-	public String toString(int n, double p){
-	return "Number: " + n + ", Price: " + p;
+	public String toString(){
+		return ("Number: " + this.number);
 	}
+	
 }
