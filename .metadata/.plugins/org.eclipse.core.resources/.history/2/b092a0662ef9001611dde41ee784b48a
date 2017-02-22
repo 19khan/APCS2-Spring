@@ -1,0 +1,9 @@
+import java.io.*;
+import java.util.*;
+
+public class TemperatureDifference {
+	public static void main (String args []) throws FileNotFoundException{
+		Scanner input = new Scanner (new File("./resources/weather.txt"));
+		System.out.println(input.next());
+	}
+}
