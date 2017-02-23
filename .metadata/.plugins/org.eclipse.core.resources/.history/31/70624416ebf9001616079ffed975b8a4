@@ -12,8 +12,8 @@ public class TemperatureDifference {
 				break;
 			}
 		}	
-		for (int i = 0; i < data.size()-1; i++){
-			System.out.println (data.get(i)+" to " + data.get(i+1) +", change = "+ (data.get(i+1) - data.get(i)));
+		for (int i = 0; i < data.size(); i++){
+			System.out.println(data.get(i)+" to " + data.get(i+1) +", change = "+ (data.get(i+1) - data.get(i)));
 		}
 	}
 }
