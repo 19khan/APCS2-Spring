@@ -9,17 +9,19 @@ public class Spreadsheet implements Grid
 		Cell [][] cells = new EmptyCell [20][12];
 	}
 
-	public String processCommand(String command){
-		return command;
+	public String processCommand(String command)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
 	public int getRows(){
-		return 20;
+		return 12;
 	}
 
 	public int getCols(){
-		return 12;
+		return 20;
 	}
 
 	@Override

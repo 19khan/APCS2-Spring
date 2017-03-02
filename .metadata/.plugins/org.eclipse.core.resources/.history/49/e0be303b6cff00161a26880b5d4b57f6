@@ -5,21 +5,26 @@ package textExcel;
 public class Spreadsheet implements Grid
 {
 	
-	public Spreadsheet (){
-		Cell [][] cells = new EmptyCell [20][12];
+
+	@Override
+	public String processCommand(String command)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 
-	public String processCommand(String command){
-		return command;
+	@Override
+	public int getRows()
+	{
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
-	
-	public int getRows(){
-		return 20;
-	}
-
-	public int getCols(){
-		return 12;
+	@Override
+	public int getCols()
+	{
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override

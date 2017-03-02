@@ -11,7 +11,7 @@ public class TextExcel{
 	    Spreadsheet cells = new Spreadsheet();
 		Scanner userInput = new Scanner (System.in);
 	    while (userInput.next() != "quit"){
-	    	System.out.println(cells.processCommand(userInput.nextLine()));
+	    	cells.processCommand(userInput.nextLine());
 	    }
 	}
 }

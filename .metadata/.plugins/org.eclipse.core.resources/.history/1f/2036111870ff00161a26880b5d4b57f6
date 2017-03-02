@@ -9,8 +9,10 @@ public class Spreadsheet implements Grid
 		Cell [][] cells = new EmptyCell [20][12];
 	}
 
-	public String processCommand(String command){
-		return command;
+	public String processCommand(String command)
+	{
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	
