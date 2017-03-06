@@ -29,6 +29,10 @@ public class Spreadsheet implements Grid{
 	}
 	
 	public String getGridText(){
+		char [] colHeading = new char [getCols()];
+		for (int i = 0; i < colHeading.length; i++){
+			colHeading[i] = 'A'+1;
+		}
 		
 		int [] rowHeading = new int [getRows()];
 		for (int i = 0; i < rowHeading.length; i++){
@@ -36,14 +40,9 @@ public class Spreadsheet implements Grid{
 		}
 		
 		for (int row = 0; row < getRows()+1; row++){
-			for (int j = 0; j < getCols(); j++){
-				if (j == 0){
-					System.out.print("|          ");
-				}if (row == 0){
-					System.out.print ("|" +(char)('A'+j)+"         ");
-					if (j == 11){
-						System.out.println("|"+(char)('A'+j)+ "         |");
-					}
+			for (int j = 0; j < colHeading.length; j++){
+				if (row == 0){
+					System.out.print ("|"+colHeading[j]+"         |");
 				}
 			}
 			
