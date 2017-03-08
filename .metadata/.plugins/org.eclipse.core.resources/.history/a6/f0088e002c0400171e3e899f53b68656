@@ -2,11 +2,11 @@ package textExcel;
 
 public class Spreadsheet implements Grid{
 	
-private Cell [][] cells = new Cell [this.getRows()][this.getCols()];	
 	public Spreadsheet (){
-		for (int i = 0; i < this.cells.length; i++){
-			for (int j = 0; j < this.cells [i].length; j++){
-				this.cells [i][j] = new EmptyCell();
+		Cell [][] cells = new Cell [getRows()][getCols()];
+		for (int i = 0; i < cells.length; i++){
+			for (int j = 0; j < cells [i].length; j++){
+				cells [i][j] = new EmptyCell();
 			}
 		}
 	}
@@ -50,26 +50,23 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 	}
 	
 	public String getGridText(){
-		String header = "   |";
-		char start = 'A';
-		for (int col = 0; col < 12; col++){
-			header += ((char)(start + col)) + "         |";
-		}	
-		System.out.println(header);
 		
-		String rowsHeading = "";
-		String rows = "";
-		for (int row = 0; row < 20; row++){
-			if (row < 10){
-				rowsHeading = ((row+1)+"  |");
+		String headerRow = "";
+		for (int col = 0; col <= this.getCols(); col++){
+			if (col == 0){
+				headerRow += "|          ";
 			}else{
-				rowsHeading = ((row+1)+" |");
-			for (int col = 0; col < 12; col++){	
-				}
-				rows += cells[row][col].abbreviatedCellText()+"|";
-			}
+				headerRow += "|"+ ((char)col-1+'A') + "          ";
+			}if (col == 12){
+				headerRow += "|"+ ((char)col-1+'A') + "          |";
 		}
-		System.out.println (rowsHeading + rows);
+		String finalSheet = headerRow;
+		return finalSheet;
+		
+	}
+			
+		
+		
 		return null;
 	}
 }

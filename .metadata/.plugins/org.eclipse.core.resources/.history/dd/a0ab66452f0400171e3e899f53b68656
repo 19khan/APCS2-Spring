@@ -60,16 +60,16 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 		String rowsHeading = "";
 		String rows = "";
 		for (int row = 0; row < 20; row++){
-			if (row < 10){
-				rowsHeading = ((row+1)+"  |");
-			}else{
-				rowsHeading = ((row+1)+" |");
 			for (int col = 0; col < 12; col++){	
+				if (row < 10){
+					rowsHeading = ((row+1)+"  |");
+				}else{
+					rowsHeading = ((row+1)+" |");
 				}
 				rows += cells[row][col].abbreviatedCellText()+"|";
 			}
 		}
-		System.out.println (rowsHeading + rows);
+		System.out.println (rows);
 		return null;
 	}
 }
