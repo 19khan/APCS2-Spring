@@ -10,7 +10,7 @@ public class TextExcel{
 	public static void main(String[] args){
 	    Spreadsheet cells = new Spreadsheet();
 	    
-	    cells.getGridText();
+	    System.out.println(cells.getGridText());
 	    
 		Scanner userInput = new Scanner (System.in);
 		String command = userInput.nextLine();

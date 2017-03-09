@@ -3,10 +3,11 @@ package textExcel;
 public class Spreadsheet implements Grid{
 	
 private Cell [][] cells = new Cell [this.getRows()][this.getCols()];	
+
 	public Spreadsheet (){
-		for (int i = 0; i < this.cells.length; i++){
-			for (int j = 0; j < this.cells [i].length; j++){
-				this.cells [i][j] = new EmptyCell();
+		for (int i = 0; i < cells.length; i++){
+			for (int j = 0; j < cells [i].length; j++){
+				cells [i][j] = new EmptyCell();
 			}
 		}
 	}
@@ -16,7 +17,8 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 		if (splitCommand.length == 0){
 			//Clear entire sheet.
 			if (splitCommand [0].toLowerCase().equals("clear")){
-				//do clear stuff
+				Spreadsheet cells = new Spreadsheet();
+				return getGridText();
 			}
 		}if (splitCommand.length == 2){
 			//Clear specific sheet
@@ -25,12 +27,19 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 			int column = location.charAt(0) - 'A';
 			int row = Integer.parseInt(location.substring(1));
 			
+			cells [row][column] = new EmptyCell();
+			return getGridText();
+			
 		}if (splitCommand.length == 3){
 			//Assigning new value to specific location.
 			String location = splitCommand[0];
 		
 			int column = location.charAt(0) - 'A';
 			int row = Integer.parseInt(location.substring(1));
+			
+			
+		}else{
+			//If the command if nonexistent or incorrect.
 		}
 		
 		return command;
@@ -50,26 +59,30 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 	}
 	
 	public String getGridText(){
+		String finalGrid = "";
 		String header = "   |";
 		char start = 'A';
-		for (int col = 0; col < 12; col++){
+		for (int col = 0; col < this.getCols(); col++){
 			header += ((char)(start + col)) + "         |";
-		}	
-		System.out.println(header);
+		}
+		header += "\n";
+		finalGrid += header;
 		
 		String rowsHeading = "";
-		String rows = "";
-		for (int row = 0; row < 20; row++){
-			if (row < 10){
+		for (int row = 0; row < this.getRows(); row++){
+			String rows = "";
+			if (row < 9){
 				rowsHeading = ((row+1)+"  |");
 			}else{
 				rowsHeading = ((row+1)+" |");
-			for (int col = 0; col < 12; col++){	
-				}
+			}
+			finalGrid += rowsHeading;
+			for (int col = 0; col < this.getCols(); col++){	
 				rows += cells[row][col].abbreviatedCellText()+"|";
 			}
+			rows += "\n";
+			finalGrid += rows;
 		}
-		System.out.println (rowsHeading + rows);
-		return null;
+		return finalGrid;
 	}
 }
