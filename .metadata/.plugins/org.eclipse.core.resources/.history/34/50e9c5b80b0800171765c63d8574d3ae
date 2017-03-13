@@ -15,6 +15,11 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 	public String processCommand(String command){
 		String [] splitCommand = command.split(" ");
 		if (splitCommand.length == 0){
+			int column = splitCommand[0].charAt(0) - 'A';
+			int row = Integer.parseInt(splitCommand[0].substring(1));
+			
+			String inspect = cells [row][column].toString();
+			return inspect;
 		}
 			
 		if (splitCommand [0].toLowerCase().equals("clear")){
@@ -44,8 +49,10 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 			cells [row][column] = new TextCell(text);
 			return getGridText();
 		}else{
-			return "something's wrong";
+			//If the command if nonexistent or incorrect.
 		}
+		
+		return command;
 	}
 
 	public int getRows(){
@@ -57,7 +64,8 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 	}
 
 	public Cell getCell(Location loc){
-		return cells [getRows()][getCols()];
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	public String getGridText(){

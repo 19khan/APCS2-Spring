@@ -10,6 +10,11 @@ public class TextExcel{
 	public static void main(String[] args){
 	    Spreadsheet cells = new Spreadsheet();
 	    
+	    System.out.println(cells.getGridText());
+	    
+	    TestsALL.Helper th = new TestsALL.Helper();
+	    System.out.println(th.getText());
+	    
 		Scanner userInput = new Scanner (System.in);
 		String command = userInput.nextLine();
 	    while (!userInput.next().equals("quit")){
@@ -17,4 +22,5 @@ public class TextExcel{
 	    	command = userInput.nextLine();
 	    }
 	}
+	
 }

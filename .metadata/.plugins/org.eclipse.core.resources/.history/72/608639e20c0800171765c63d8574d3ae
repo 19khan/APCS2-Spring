@@ -57,7 +57,8 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 	}
 
 	public Cell getCell(Location loc){
-		return cells [getRows()][getCols()];
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	public String getGridText(){
