@@ -14,7 +14,7 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 
 	public String processCommand(String command){
 		String [] splitCommand = command.split(" ");
-		if (splitCommand.length == 0){
+		if (splitCommand.length == 1){
 			if (splitCommand[0].toLowerCase().equals("clear")){		//if command is "clear"
 				for (int i = 0; i < cells.length; i++){
 					for (int j = 0; j < cells [i].length; j++){
@@ -25,28 +25,27 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 				int row = splitCommand[0].charAt(0) - 'A';
 				int col = Integer.parseInt(splitCommand[0].substring(1));
 				
-				if (cells[row][col].fullCellText().equals("")){
-					return "empty";
+				if (cells[row][col].fullCellText().equals("")){		//when inspecting an empty cell
+					return "";
 				}else{
 					return cells [row][col].fullCellText();
 				}
-			}if (splitCommand.length == 2){		//clearing a specific cell
-				int row = splitCommand[1].charAt(0) - 'A';
-				int col = Integer.parseInt(splitCommand[1].substring(1));
+			}
+		}if (splitCommand.length == 2){		//clearing a specific cell
+			int row = splitCommand[1].charAt(0) - 'A';
+			int col = Integer.parseInt(splitCommand[1].substring(1));
 				
-				cells [row][col] = new EmptyCell();
-				return getGridText();
-
-			}if (splitCommand.length == 3){		//if it has format "location" = "value"
-				int row = splitCommand[0].charAt(0) - 'A';
-				int col = Integer.parseInt(splitCommand[0].substring(1));
+			cells [row][col] = new EmptyCell();
+			return getGridText();
 				
-				cells [row][col] = new TextCell(splitCommand[2]);
-				return getGridText();
+		}else{		//if it has format "location" = "value"
+			int row = splitCommand[0].charAt(0) - 'A';
+			int col = Integer.parseInt(splitCommand[0].substring(1));
+				
+			cells [row][col] = new TextCell(splitCommand[2]);
+			return getGridText();
 			}
 		}
-		return null;
-	}
 
 	public int getRows(){
 		return 20;
