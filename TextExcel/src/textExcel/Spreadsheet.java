@@ -15,37 +15,37 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 	public String processCommand(String command){
 		String [] splitCommand = command.split(" ");
 		if (splitCommand.length == 0){
-		}
-			
-		if (splitCommand [0].toLowerCase().equals("clear")){
-			//clear entire spreadsheet
-			for (int i = 0; i < cells.length; i++){
-				for (int j = 0; j < cells [i].length; j++){
-					cells [i][j] = new EmptyCell();
+			if (splitCommand[0].toLowerCase().equals("clear")){		//if command is "clear"
+				for (int i = 0; i < cells.length; i++){
+					for (int j = 0; j < cells [i].length; j++){
+						cells [i][j] = new EmptyCell();
+					}
 				}
+			}else{		//if calling for cell inspection
+				int row = splitCommand[0].charAt(0) - 'A';
+				int col = Integer.parseInt(splitCommand[0].substring(1));
+				
+				if (cells[row][col].fullCellText().equals("")){
+					return "empty";
+				}else{
+					return cells [row][col].fullCellText();
+				}
+			}if (splitCommand.length == 2){		//clearing a specific cell
+				int row = splitCommand[1].charAt(0) - 'A';
+				int col = Integer.parseInt(splitCommand[1].substring(1));
+				
+				cells [row][col] = new EmptyCell();
+				return getGridText();
+
+			}if (splitCommand.length == 3){		//if it has format "location" = "value"
+				int row = splitCommand[0].charAt(0) - 'A';
+				int col = Integer.parseInt(splitCommand[0].substring(1));
+				
+				cells [row][col] = new TextCell(splitCommand[2]);
+				return getGridText();
 			}
-			return getGridText();
-			
-		}if (splitCommand.length == 2){
-			//Clear specific sheet			
-			int column = splitCommand[1].charAt(0) - 'A';
-			int row = Integer.parseInt(splitCommand[1].substring(1));
-			
-			cells [row][column] = new EmptyCell();
-			return getGridText();
-			
-		}if (splitCommand.length == 3){
-			//Assigning new value to specific location.	
-			int column = splitCommand[0].charAt(0) - 'A';
-			int row = Integer.parseInt(splitCommand[0].substring(1));
-			
-			String text = splitCommand[3].substring(1, splitCommand[3].length()-2);
-			
-			cells [row][column] = new TextCell(text);
-			return getGridText();
-		}else{
-			return "something's wrong";
 		}
+		return null;
 	}
 
 	public int getRows(){
@@ -57,7 +57,7 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 	}
 
 	public Cell getCell(Location loc){
-		return cells [getRows()][getCols()];
+		return cells[loc.getRow()][loc.getCol()];
 	}
 	
 	public String getGridText(){
