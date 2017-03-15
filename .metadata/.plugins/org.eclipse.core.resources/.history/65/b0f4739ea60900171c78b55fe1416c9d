@@ -41,8 +41,10 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 		}else{		//if it has format "location" = "value"
 			int col = splitCommand[0].toUpperCase().charAt(0) - 'A';
 			int row = Integer.parseInt(splitCommand[0].substring(1));
+			
+			String value = splitCommand[2].substring(1, splitCommand.length-1);
 				
-			cells [row][col] = new TextCell(splitCommand[2]);
+			cells [row][col] = new TextCell(value);
 			return getGridText();
 			}
 		}

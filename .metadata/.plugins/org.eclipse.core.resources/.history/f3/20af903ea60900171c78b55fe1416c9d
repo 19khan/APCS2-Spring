@@ -22,8 +22,8 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 					}
 				}
 			}else{		//if calling for cell inspection
-				int col = splitCommand[0].toUpperCase().charAt(0) - 'A';
-				int row = Integer.parseInt(splitCommand[0].substring(1));
+				int row = splitCommand[0].toUpperCase().charAt(0) - 'A';
+				int col = Integer.parseInt(splitCommand[0].substring(1));
 				
 				if (cells[row][col].fullCellText().equals("")){		//when inspecting an empty cell
 					return "";
@@ -32,8 +32,8 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 				}
 			}
 		}if (splitCommand.length == 2){		//clearing a specific cell
-			int col = splitCommand[1].toUpperCase().charAt(0) - 'A';
-			int row = Integer.parseInt(splitCommand[1].substring(1));
+			int row = splitCommand[1].toUpperCase().charAt(0) - 'A';
+			int col = Integer.parseInt(splitCommand[1].substring(1));
 				
 			cells [row][col] = new EmptyCell();
 			return getGridText();
