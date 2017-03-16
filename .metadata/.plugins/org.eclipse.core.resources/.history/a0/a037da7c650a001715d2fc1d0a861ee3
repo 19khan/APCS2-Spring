@@ -8,10 +8,10 @@ private String text;
 	}
 
 	public String abbreviatedCellText() {
-		if (this.text.length() >= 10){
-			return this.text.substring(0, 10);	
+		if (this.text.length() > 10){
+			return this.text.substring(0, 9);	
 		}else{
-			int filler = 9 - this.text.length();
+			int filler = 10 - this.text.length();
 			String fillerText = "";
 			for (int i = 0; i <= filler; i++){
 				fillerText +=" ";

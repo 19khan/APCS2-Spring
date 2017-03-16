@@ -13,8 +13,8 @@ public class TextExcel{
 	    System.out.println(cells.getGridText());
 	    
 		Scanner userInput = new Scanner (System.in);
-		String command = userInput.nextLine();
 	    while (!userInput.next().equals("quit")){
+			String command = userInput.nextLine();
 	    	System.out.println(cells.processCommand(command));
 	    	command = userInput.nextLine();
 	    }

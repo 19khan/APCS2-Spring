@@ -13,20 +13,19 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 	}
 
 	public String processCommand(String command){
-		String [] splitCommand = command.split(" ", 3);
+		String [] splitCommand = command.split(" ");
 		if (splitCommand.length == 1){
-			if (splitCommand[0].toUpperCase().equals("CLEAR")){		//if command is "clear"
+			if (splitCommand[0].toLowerCase().equals("clear")){		//if command is "clear"
 				for (int i = 0; i < cells.length; i++){
 					for (int j = 0; j < cells [i].length; j++){
 						cells [i][j] = new EmptyCell();
 					}
 				}
-				return getGridText();
 			}else{		//if calling for cell inspection
 				int col = splitCommand[0].toUpperCase().charAt(0) - 'A';
 				int row = Integer.parseInt(splitCommand[0].substring(1));
 				
-				if (cells[row-1][col].fullCellText().equals("")){		//when inspecting an empty cell
+				if (cells[row][col].fullCellText().equals("")){		//when inspecting an empty cell
 					return "";
 				}else{
 					return cells [row][col].fullCellText();
@@ -36,14 +35,14 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 			int col = splitCommand[1].toUpperCase().charAt(0) - 'A';
 			int row = Integer.parseInt(splitCommand[1].substring(1));
 				
-			cells [row-1][col] = new EmptyCell();
+			cells [row][col] = new EmptyCell();
 			return getGridText();
 				
 		}else{		//if it has format "location" = "value"
 			int col = splitCommand[0].toUpperCase().charAt(0) - 'A';
 			int row = Integer.parseInt(splitCommand[0].substring(1));
-			
-			cells [row-1][col] = new TextCell(splitCommand[2]);
+				
+			cells [row][col] = new TextCell(splitCommand[2]);
 			return getGridText();
 			}
 		}
