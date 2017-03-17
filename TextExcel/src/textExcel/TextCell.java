@@ -8,21 +8,23 @@ private String text;
 	}
 
 	public String abbreviatedCellText() {
-		if (this.text.length() >= 10){
-			return this.text.substring(0, 10);	
-		}else{
-			int filler = 9 - this.text.length();
-			String fillerText = "";
-			for (int i = 0; i <= filler; i++){
-				fillerText +=" ";
+		String finalText = "";
+		finalText = this.text;
+		if (this.text.length() < 10){
+			while (finalText.length() < 10){
+				finalText += " ";
 			}
-			return text +fillerText;
+			return finalText;
+		}else{
+			finalText = finalText.substring(0, 10);
+			return finalText;
 		}
+		
 		
 	}
 
 	public String fullCellText() {
-		return this.text;
+		return "\""+this.text+"\"";
 	}
 
 }

@@ -6,7 +6,7 @@ public class SpreadsheetLocation implements Location{
 	private String location;
 	
     public SpreadsheetLocation(String cellName){
-    	this.location = cellName;
+    	this.location = cellName.toUpperCase();
     }
     
     public int getRow(){
@@ -14,6 +14,6 @@ public class SpreadsheetLocation implements Location{
     }
 
     public int getCol(){
-    	return (int)this.location.charAt(0)-'A';
+    	return this.location.toUpperCase().charAt(0)-'A';
     }
 }

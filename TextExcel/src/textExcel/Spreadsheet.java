@@ -14,39 +14,32 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 
 	public String processCommand(String command){
 		String [] splitCommand = command.split(" ", 3);
-		if (splitCommand.length == 1){
-			if (splitCommand[0].toUpperCase().equals("CLEAR")){		//if command is "clear"
-				for (int i = 0; i < cells.length; i++){
-					for (int j = 0; j < cells [i].length; j++){
-						cells [i][j] = new EmptyCell();
-					}
-				}
-				return getGridText();
-			}else{		//if calling for cell inspection
-				int col = splitCommand[0].toUpperCase().charAt(0) - 'A';
-				int row = Integer.parseInt(splitCommand[0].substring(1));
-				
-				if (cells[row-1][col].fullCellText().equals("")){		//when inspecting an empty cell
-					return "";
-				}else{
-					return cells [row][col].fullCellText();
-				}
-			}
-		}if (splitCommand.length == 2){		//clearing a specific cell
-			int col = splitCommand[1].toUpperCase().charAt(0) - 'A';
-			int row = Integer.parseInt(splitCommand[1].substring(1));
-				
-			cells [row-1][col] = new EmptyCell();
-			return getGridText();
-				
-		}else{		//if it has format "location" = "value"
-			int col = splitCommand[0].toUpperCase().charAt(0) - 'A';
-			int row = Integer.parseInt(splitCommand[0].substring(1));
+		if (command.indexOf("=")>0){		//if value is set at specific location.
+			String location = splitCommand[0].toUpperCase();
+			String value = splitCommand[2];
+			assignValue (location, value);
 			
-			cells [row-1][col] = new TextCell(splitCommand[2]);
 			return getGridText();
+			
+		}else if(splitCommand[0].equalsIgnoreCase("clear")
+				&& splitCommand.length == 2){	//if "clear" is called asking for specific location..
+			SpreadsheetLocation coordinate = new SpreadsheetLocation(splitCommand[1]);
+			cells [coordinate.getRow()][coordinate.getCol()] = new EmptyCell();
+			
+			return getGridText();
+			
+		}else if (command.equalsIgnoreCase("clear")){		//if command is calling for clearing whole cell.
+			for (int i = 0; i < cells.length; i++){
+				for (int j = 0; j < cells[i].length; j++){
+					cells [i][j] = new EmptyCell();
+				}
 			}
+			return getGridText();
+			
+		}else{		//cell inspection
+			return inspect(command);
 		}
+	}
 
 	public int getRows(){
 		return 20;
@@ -86,5 +79,16 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 			finalGrid += rows;		//add everything to "finalGrid"
 		}							//"finalGrid" turns into a very long string that prints out the whole spreadsheet.
 		return finalGrid;		//return "finalGrid."
+	}
+	
+	public void assignValue (String location, String value){
+		SpreadsheetLocation coordinate = new SpreadsheetLocation(location);
+		
+		cells[coordinate.getRow()][coordinate.getCol()] = new TextCell(value.substring(1, value.length()-1));
+	}
+	
+	public String inspect (String location){
+		SpreadsheetLocation coordinate = new SpreadsheetLocation(location);
+		return cells[coordinate.getRow()][coordinate.getCol()].fullCellText();
 	}
 }
