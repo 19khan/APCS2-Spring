@@ -13,9 +13,10 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 	}
 
 	public String processCommand(String command){
-		String [] splitCommand = command.split(" ", 3);
+		String [] splitCommand = command.split(" ", 3);		//splits "command" by " ". After the second split, rest stay together.
 		if (command.indexOf("=")>0){		//if value is set at specific location.
-			String location = splitCommand[0].toUpperCase();
+			String location = splitCommand[0].toUpperCase();		//to uppercase in case given location is in lowercase.
+			
 			String value = splitCommand[2];
 			assignValue (location, value);
 			
@@ -23,7 +24,7 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 			
 		}else if(splitCommand[0].equalsIgnoreCase("clear")
 				&& splitCommand.length == 2){	//if "clear" is called asking for specific location..
-			SpreadsheetLocation coordinate = new SpreadsheetLocation(splitCommand[1]);
+			SpreadsheetLocation coordinate = new SpreadsheetLocation(splitCommand[1].toUpperCase());
 			cells [coordinate.getRow()][coordinate.getCol()] = new EmptyCell();
 			
 			return getGridText();
@@ -53,7 +54,7 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 		return cells[loc.getRow()][loc.getCol()];
 	}
 	
-	public String getGridText(){
+	public String getGridText(){		//print out entire grid.
 		String finalGrid = "";
 		String header = "   |";
 		char start = 'A';
@@ -81,14 +82,14 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 		return finalGrid;		//return "finalGrid."
 	}
 	
-	public void assignValue (String location, String value){
-		SpreadsheetLocation coordinate = new SpreadsheetLocation(location);
+	public void assignValue (String location, String value){		//assigning value to specific cell.
+		SpreadsheetLocation coordinate = new SpreadsheetLocation(location);		//used to separate the letter column from number row.
 		
-		cells[coordinate.getRow()][coordinate.getCol()] = new TextCell(value.substring(1, value.length()-1));
+		cells[coordinate.getRow()][coordinate.getCol()] = new TextCell(value.substring(1, value.length()-1));		//substring from 1 to length-1 to get rid of quotations.
 	}
 	
-	public String inspect (String location){
-		SpreadsheetLocation coordinate = new SpreadsheetLocation(location);
-		return cells[coordinate.getRow()][coordinate.getCol()].fullCellText();
+	public String inspect (String location){		//cell inspection.
+		SpreadsheetLocation coordinate = new SpreadsheetLocation(location);		//used to separate letter column from number row.
+		return cells[coordinate.getRow()][coordinate.getCol()].fullCellText();		//returns fullCellText when inspecting a celll
 	}
 }

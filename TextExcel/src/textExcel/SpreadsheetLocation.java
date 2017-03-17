@@ -6,14 +6,14 @@ public class SpreadsheetLocation implements Location{
 	private String location;
 	
     public SpreadsheetLocation(String cellName){
-    	this.location = cellName.toUpperCase();
+    	this.location = cellName;
     }
     
     public int getRow(){
-        return Integer.parseInt(this.location.substring(1))-1;
+        return (Integer.parseInt(this.location.substring(1)))-1;
     }
 
     public int getCol(){
-    	return this.location.toUpperCase().charAt(0)-'A';
+    	return this.location.charAt(0)-'A';
     }
 }
