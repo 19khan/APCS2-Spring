@@ -85,11 +85,11 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 	public void assignValue (String location, String value){		//assigning value to specific cell.
 		SpreadsheetLocation coordinate = new SpreadsheetLocation(location);		//used to separate the letter column from number row.
 		if (value.indexOf("%") > 0){
-			cells[coordinate.getRow()][coordinate.getCol()] = new PercentCell(value);
+			cells[coordinate.getRow()][coordinate.getCol()] = new PercentCell();
 		}else if (value.indexOf("(") > 0){
-			cells[coordinate.getRow()][coordinate.getCol()] = new FormulaCell(value);
+			cells[coordinate.getRow()][coordinate.getCol()] = new FormulaCell();
 		}else if (value.indexOf(".") > 0){
-			cells[coordinate.getRow()][coordinate.getCol()] = new ValueCell(value);
+			cells[coordinate.getRow()][coordinate.getCol()] = new ValueCell();
 		}else{
 			cells[coordinate.getRow()][coordinate.getCol()] = new TextCell(value.substring(1, value.length()-1));		//substring from 1 to length-1 to get rid of quotations.
 		}
