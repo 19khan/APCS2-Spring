@@ -90,7 +90,6 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 			cells[coordinate.getRow()][coordinate.getCol()] = new FormulaCell(value);
 		}else if (value.indexOf(".") > 0){
 			cells[coordinate.getRow()][coordinate.getCol()] = new ValueCell(value);
-		}else if ()
 		}else{
 			cells[coordinate.getRow()][coordinate.getCol()] = new TextCell(value.substring(1, value.length()-1));		//substring from 1 to length-1 to get rid of quotations.
 		}
