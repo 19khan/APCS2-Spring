@@ -14,6 +14,6 @@ public class ValueCell extends RealCell {
 	}
 	
 	public String fullCellText() {
-		return value + "";
+		return super.fullCellText();
 	}
 }

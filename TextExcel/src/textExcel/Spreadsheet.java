@@ -1,4 +1,6 @@
 package textExcel;
+import java.io.*;
+import java.util.*;
 
 public class Spreadsheet implements Grid{
 	
@@ -90,14 +92,40 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 			cells[coordinate.getRow()][coordinate.getCol()] = new FormulaCell(value);
 		}else if (value.indexOf(".") > 0){
 			cells[coordinate.getRow()][coordinate.getCol()] = new ValueCell(value);
-		}else if ()
-		}else{
+		}else if (value.charAt(0) == '"'
+				&& value.charAt(value.length()-1) == '"'){
 			cells[coordinate.getRow()][coordinate.getCol()] = new TextCell(value.substring(1, value.length()-1));		//substring from 1 to length-1 to get rid of quotations.
+		}else {
+			cells[coordinate.getRow()][coordinate.getCol()] = new ValueCell(value);
 		}
 	}
 	
 	public String inspect (String location){		//cell inspection.
 		SpreadsheetLocation coordinate = new SpreadsheetLocation(location);		//used to separate letter column from number row.
 		return cells[coordinate.getRow()][coordinate.getCol()].fullCellText();		//returns fullCellText when inspecting a celll
+	}
+	
+	public String SaveFile (String filename) {
+		PrintWriter outputFile;
+		try {
+			outputFile = new PrintWriter (new File(filename));
+		}
+		catch (FileNotFoundException e) {
+			return "File not found: " + filename;
+		}
+		outputFile.close();
+		return "something";
+	}
+	
+	public String OpenFile (String filename) {
+		Scanner inputFile;
+		try {
+			inputFile = new Scanner (new File(filename));
+		}
+		catch (FileNotFoundException e) {
+			return "File not found: " + filename;
+		}
+		inputFile.close();
+		return "something";
 	}
 }
