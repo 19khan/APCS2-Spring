@@ -13,6 +13,7 @@ public class TextExcel{
 		Scanner userInput = new Scanner (System.in);
 		String command = userInput.nextLine();
 	    while (!command.toUpperCase().equals("QUIT")){
+			command = userInput.nextLine();
 	    	System.out.println(cells.processCommand(command));
 	    	command = userInput.nextLine();
 	    }

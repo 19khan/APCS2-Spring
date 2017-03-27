@@ -88,8 +88,7 @@ private Cell [][] cells = new Cell [this.getRows()][this.getCols()];
 		SpreadsheetLocation coordinate = new SpreadsheetLocation(location);		//used to separate the letter column from number row.
 		if (value.indexOf("%") > 0){
 			cells[coordinate.getRow()][coordinate.getCol()] = new PercentCell(value);
-		}else if (value.charAt(0) == '('
-				&& value.charAt(value.length()-1) == ')'){
+		}else if (value.indexOf("(") > 0){
 			cells[coordinate.getRow()][coordinate.getCol()] = new FormulaCell(value);
 		}else if (value.charAt(0) == '"'
 				&& value.charAt(value.length()-1) == '"'){
