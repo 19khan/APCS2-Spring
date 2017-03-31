@@ -9,7 +9,7 @@ public class FormulaCell extends RealCell {
 	}
 	
 	public String abbreviatedCellText(){
-		return getDoubleValue(formula)+"                      ".substring(0,10);
+		return getDoubleValue(formula)+"                      ".substring(0,8);
 	}
 	
 	public String fullCellText() {
